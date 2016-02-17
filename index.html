@@ -2,31 +2,78 @@
 <html>
 
 <head>
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-	<script src="//appsforoffice.microsoft.com/lib/1.1/hosted/office.js" type="text/javascript"></script>	
-	<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+	<script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.0/notify.min.js" type="text/javascript"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="height:100%">
 
-<div id="container">
-	<h2 id="header">loading...</h2>
-	<div id="content"></div>
-		<span id="whyUse"></span>
-		
-		<form onSubmit="return false;" >	
+<div id="container" class="alert alert-info" role="alert" style="margin:0px;padding:0px;height:100%;position:absolute;">
+	<div class="alert alert-info" role="alert" style="margin:0px"><h2 id="header">loading...</h2></div>
+	<div class="alert alert-info" role="alert" style="margin:0px" ><small><em id="whyUse"></em></small></div>	
+	<div class="alert alert-info" role="alert" id="content" style="margin:0px" >
+		<form onSubmit="return false;">
 			<fieldset>
-				 <span></span>
+				<span></span>
+				<div id="builtInDiv"></div>			
+				<div id="userDefinedDiv" style="display:none">
+					<div id="userDefinedDatabase" style="width:100%"></div>
+					<input type="text" id="s1" placeholder="s1" name="s1" class="form-control" />
+					<select id="s1Opt" multiple="multiple" class="form-control" >
+					  <option value=''></option>
+					  <option value='"matchCase": true'  class="match">matchCase</option>
+					  <option value='"matchWildCards": true' class="no-match">matchWildCards</option>
+					  <option value='"ignoreSpace": true'>ignoreSpace</option>
+					  <option value='"ignorePunct": true'>ignorePunct</option>
+					  <option value='"matchWholeWord": true'  class="match">matchWholeWord</option>
+					  <option value='"matchSoundsLike": true'>matchSoundsLike</option>
+					  <option value='"matchPrefix": true'  class="match">matchPrefix</option>
+					  <option value='"matchSuffix": true'  class="match">matchSuffix</option>
+					</select>
+					<input type="text" id="s2" placeholder="s2" name="s2" class="form-control" />
+					<select id="s2Opt" multiple="multiple" class="form-control">
+					  <option value=''></option>
+					  <option value='"matchCase": true'  class="match">matchCase</option>
+					  <option value='"matchWildCards": true' class="no-match">matchWildCards</option>
+					  <option value='"ignoreSpace": true'>ignoreSpace</option>
+					  <option value='"ignorePunct": true'>ignorePunct</option>
+					  <option value='"matchWholeWord": true'  class="match">matchWholeWord</option>
+					  <option value='"matchSoundsLike": true'>matchSoundsLike</option>
+					  <option value='"matchPrefix": true'  class="match">matchPrefix</option>
+					  <option value='"matchSuffix": true'  class="match">matchSuffix</option>
+					</select>
+					<input type="text" id="to" placeholder="to" name="to" class="form-control" />
+					<div class="row">
+					  <div class="col-xs-6"><button id="addEntryButton" class='btn btn-primary' style="width:100%">+</button></div>
+					  <div class="col-xs-6"><button id="deleteLastEntryButton" class='btn btn-primary' style="width:100%">-</button></div>
+					</div>
+					
+					
+				</div>
 			</fieldset>
-			<button id="goButton" style="width:100%"></button>			
+			<div id="instructions"><a href="http://g.wtsolutions.cn">http://g.wtsolutions.cn</a></div>	
+			<button id="goButton" class="btn btn-primary" style="width:100%"></button>
 		</form>
-		<div id="instructions"><a href="http://g.wtsolutions.cn">http://g.wtsolutions.cn</a></div>
-	<div><small><span id="footer"></span></small></div>
+		
+	</div>
+	<div class="alert alert-danger" role="alert" id="error" style="margin:0px"></div>
+	<div class="container"><p id="footer" class="text-center small"> He.Yang at WTSolutions.cn</p></div>
 </div>
-
-
 <script src="/databases/text-effects-autocorrection.db.js" type="text/javascript"></script>
 <script src="/scripts/text-effects-autocorrection.js" type="text/javascript"></script>
-
+<!--baidu tongji-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?00195c4e233349e692de38c1a46162e4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!--baidu tongji-->
 </body>
 </html>
+
