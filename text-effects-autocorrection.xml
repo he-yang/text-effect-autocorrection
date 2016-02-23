@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--16e98af5-ced6-4449-8eea-ef74caaf2498-->
+<!--3c038708-5905-403d-941f-89dcf72bfd90-->
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="TaskPaneApp">
-  <Id>3c038708-5905-403d-941f-89dcf72bfd90</Id>
-  <Version>1.1.0.0</Version>
+  <Id>939d4dae-67ea-4e47-9231-ba36d84c4cd0</Id>
+  <Version>1.1.1.0</Version>
   <ProviderName>he.yang@wtsolutions.cn</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Text Effects AutoCorrection" >
@@ -12,16 +13,20 @@
 	  <Override Locale="zh-CN" Value="自动修正文本中字母大小写、上下标等文字效果错误"></Override>
   </Description>
   <IconUrl DefaultValue="https://tools.wtsolutions.cn/logo32.png" />
-  <SupportUrl DefaultValue="http://g.wtsolutions.cn" />
+  <SupportUrl DefaultValue="https://help.wtsolutions.cn" />
   <AppDomains>
 	<AppDomain>https://tools.wtsolutions.cn</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Document" />
   </Hosts>
+  <Requirements>
+   <Sets DefaultMinVersion="1.1">
+      <Set Name="WordApi" MinVersion="1.1"/>
+   </Sets>
+  </Requirements>
   <DefaultSettings>
     <SourceLocation DefaultValue="https://tools.wtsolutions.cn/text-effects-autocorrection.html" />
   </DefaultSettings>
   <Permissions>ReadWriteDocument</Permissions>
 </OfficeApp>
-
