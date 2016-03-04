@@ -32,6 +32,8 @@ var databases={
             { s1: "Cl-",s1Opt:{}, s2: "-",s2Opt:{}, to: "superscript"},            
             { s1: "BOD5",s1Opt:{}, s2: "5",s2Opt:{}, to: "subscript"},
             { s1: "KMnO4",s1Opt:{}, s2: "4",s2Opt:{}, to: "subscript"},
+            { s1: "CaCO3",s1Opt:{}, s2: "3",s2Opt:{}, to: "subscript"},
+            { s1: "Al2O3",s1Opt:{}, s2: "[23]",s2Opt:{}, to: "subscript"},
             { s1: "NaClO[2-3]", s1Opt:{ matchWildCards: true },s2: "[2-3]",s2Opt:{}, to: "subscript"},		
 		],
 		water:[
@@ -43,5 +45,9 @@ var databases={
 			{ s1: "CODMn",s1Opt:{ matchCase: false }, s2: "cod",s2Opt:{ matchCase: false }, to: "COD"},
             { s1: "CODCr",s1Opt:{ matchCase: false }, s2: "Cr",s2Opt:{ matchCase: false }, to: "subscript"},
             { s1: "CODCr",s1Opt:{ matchCase: false }, s2: "cod",s2Opt:{ matchCase: false }, to: "COD"},
+            { s1: "ntu",s1Opt:{ matchCase: false }, to: "NTU"},
+			{ s1: "L/m2[`.]s", s1Opt:{ matchWildCards: true }, s2: "2" , s2Opt:{}, to: "superscript"},
+			{ s1: "L/m2[`.]s", s1Opt:{ matchWildCards: true }, s2: "[`.]" , s2Opt:{ matchWildCards: true }, to: "·"},
+			
         ]
 	}
