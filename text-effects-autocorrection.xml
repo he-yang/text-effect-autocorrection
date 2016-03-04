@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!--16e98af5-ced6-4449-8eea-ef74caaf2498-->
-<!--3c038708-5905-403d-941f-89dcf72bfd90-->
+<!--939d4dae-67ea-4e47-9231-ba36d84c4cd0-->
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="TaskPaneApp">
-  <Id>939d4dae-67ea-4e47-9231-ba36d84c4cd0</Id>
-  <Version>1.1.1.0</Version>
+  <Id>39798e9c-c1f8-46ad-bb0e-31170ed4d2c8</Id>
+  <Version>1.1.2.0</Version>
   <ProviderName>he.yang@wtsolutions.cn</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Text Effects AutoCorrection" >
