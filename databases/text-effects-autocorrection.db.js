@@ -1,6 +1,6 @@
 var databases={
 		standard:[
-			{ s1: "[0-9][*xX][0-9]",s1Opt:{ matchWildCards: true }, s2:"[*xX]",s2Opt:{ matchWildCards: true },to: "×"},
+			{ s1: "[0-9][xX][0-9]",s1Opt:{ matchWildCards: true }, s2:"[xX]",s2Opt:{ matchWildCards: true },to: "×"},
 			{ s1: "excel", s1Opt:{}, to: "Excel"}
 		],
 		unit:[
