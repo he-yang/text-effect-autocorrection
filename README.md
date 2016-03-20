@@ -18,6 +18,7 @@ Want to know more about WTSolutions? Visit http://blog.wtsolutions.cn (mosts pos
 * 2016-2-23 | version 1.1.1.0 | add fail scripts for Word 2013 and Word Online using query string, define new onerror alert
 * 2016-3-4  | version 1.1.2.0 | add new entries to water and units databases
 * 2016-3-14 | version 1.1.3.0 | add new entries to existing databases 
+* 2016-3-20 | version 1.2.0.0 | add new function user provided database
 
 ##Author
 he.yang @ wtsolutions.cn 
