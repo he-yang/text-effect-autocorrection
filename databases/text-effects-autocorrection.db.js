@@ -1,3 +1,12 @@
+/*
+ * text-effect-autocorrection
+ * https://help.wtsolutions.cn
+ *
+ * Copyright (c) 2016 He Yang <he.yang @ wtsolutions.cn>
+ * Licensed under the MIT license
+ */
+
+
 var databases={
 		standard:[
 			{ s1: "[0-9][xX][0-9]",s1Opt:{ matchWildCards: true }, s2:"[xX]",s2Opt:{ matchWildCards: true },to: "×"},

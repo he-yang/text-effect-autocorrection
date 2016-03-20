@@ -1,4 +1,11 @@
- 
+ /*
+ * text-effect-autocorrection
+ * Help https://help.wtsolutions.cn
+ * Souce code https://github.com/he-yang/text-effect-autocorrection
+ *
+ * Copyright (c) 2016 He Yang <he.yang @ wtsolutions.cn>
+ * Licensed under the MIT license
+ */
 (function () {
     "use strict"; 
 	//----------------------------
@@ -8,13 +15,16 @@
 	function handleErr(msg,url,l)
 	{
 		
-		txt+="Error: " + msg + "\n"
-		txt+="URL: " + url + "\n"
-		txt+="Line: " + l + "\n\n"
-		$('#error').append(txt)
+		txt+=" Error: " + msg 
+		txt+=" URL: " + url 
+		txt+=" Line: " + l +'<br>'
+		$('#error').html(txt)
+		$("#goButton").text(UIText.form.goButton);
+		$("#goButton").attr("disabled",false)
+		$.notify( "Error",  { position: 'left middle'});
 		return false
 	}
-	//end define my own error alert
+	//
 	//----------------------------
 	// get query string
 	function GetQueryString(name) {  
@@ -27,9 +37,67 @@
 		r = null;  
 		return context == null || context == "" || context == "undefined" ? "" : context;  
 	}
+	//
 	// get _host_Info
+	//
 	var host_info=GetQueryString('_host_Info').split('|')
-	//---------------------------
+	//
+	//-----------------------------	
+	//define json database schema
+	var dbSchema={
+		type:"object",
+		required:["userProvided"],
+		additionalProperties:false,
+		properties:{
+			userProvided:{
+				type:"array",
+				minItems:1,
+				uniqueItems:true,
+				additionalItems:false,
+				items:{
+					type:"object",
+					required:["s1","s1Opt","to"],
+					properties:{
+						s1:{type:"string"},
+						s1Opt:{
+							type:"object",
+							properties:{
+								ignorePunct:{type:"boolean"},
+								ignoreSpace:{type:"boolean"},
+								matchCase:{type:"boolean"},
+								matchPrefix:{type:"boolean"},
+								matchSoundsLike:{type:"boolean"},
+								matchSuffix:{type:"boolean"},
+								matchWholeWord:{type:"boolean"},
+								matchWildCards:{type:"boolean"}
+							},
+							additionalProperties:false
+						},
+						s2:{type:"string"},
+						s2Opt:{
+							type:"object",
+							properties:{
+								ignorePunct:{type:"boolean"},
+								ignoreSpace:{type:"boolean"},
+								matchCase:{type:"boolean"},
+								matchPrefix:{type:"boolean"},
+								matchSoundsLike:{type:"boolean"},
+								matchSuffix:{type:"boolean"},
+								matchWholeWord:{type:"boolean"},
+								matchWildCards:{type:"boolean"}
+							},
+							additionalProperties:false
+						},
+						to:{type:"string"}
+					},
+					additionalProperties:false
+				}
+			}
+		}
+			
+	}
+	//end defining json validation schema
+	//----------------------------------------------------------
 	//UIStrings definitions
 	var UIStrings = (function ()
 	{
@@ -37,8 +105,8 @@
 		UIStrings.EN =
 		{        
 			"header": "Text Effects Autocorrection",
-			"whyUse": "Text effects autocorrection can correct sub/super scripts, upper/lower case typos using built databases. Corrected typos will be highlighted in pink",
-			"instructions":"You can also define your own database. More help can be found ",			
+			"whyUse": "Text effects autocorrection can correct sub/super scripts, upper/lower case typos using built-in/user-defined databases. Corrected typos will be highlighted in pink. Visit https://help.wtsolutions.cn for more.",
+			"instructions":"You can also define/provide your own database. More help can be found ",			
 			"notSupported":"Word 2013 or Word Online NOT supported.This add-in requires Word 2016 or greater.",
 			"form":{
 				"fieldset":"Please select databases of your interests",
@@ -47,21 +115,24 @@
 					"unit":"Units",
 					"chemical":"Chemical",
 					"water":"Water and Wastewater",
-					"userDefined":"User Defined"	
+					"userDefined":"User Defined",
+					"userProvided":"User Provided"
 				},
 				"goButton": "GO",
 				"notValid":" s1,s1Opt,to are mandatory fields \n Help can be found at https://help.wtsolutions.cn",
 				"entryAdded":"One entry added",
 				"processing":"Processing",
-				"processed":"Process Completed"
+				"processed":"Process Completed",
+				"invalidJSON":"Invalid User Provided Database",
+				"nothingProvided":"No database provided"
 			},			
 			"footer": "Copyright(C) 2016 He Yang"
 		};
 		UIStrings.CN =
 		{        
 			"header": "文字效果自动纠正",
-			"whyUse": "根据现有数据库自动修正文本中字母大小写、上下标等文字效果错误，修正的部分将以粉红色突出显示。",
-			"instructions":"你可以自定义数据库，如需帮助，可查看",
+			"whyUse": "根据现有数据库自动修正文本中字母大小写、上下标等文字效果错误，修正的部分将以粉红色突出显示。更多帮助请查看https://help.wtsolutions.cn",
+			"instructions":"你可以自定义/提供数据库，如需帮助，可查看",
 			"notSupported":"本插件不支持Word2013和Word Online，只支持Word2016或更高级版本",
 			"form":{
 				"fieldset":"请选择感兴趣的数据库",
@@ -70,12 +141,15 @@
 					"unit":"单位",
 					"chemical":"化学",
 					"water":"给排水",
-					"userDefined":"用户自定义"
+					"userDefined":"用户自定义",
+					"userProvided":"用户提供"
 				},
 				"goButton": "开始",
 				"notValid":"s1,s1Opt,to为必填项 \n 更多帮助请查看 https://help.wtsolutions.cn",
 				"processing":"正在处理",
-				"processed":"完成"
+				"processed":"完成",
+				"invalidJSON":"用户提供数据库无效",
+				"nothingProvided":"用户未提供数据库文件"
 			},	
 			"footer": "Copyright(C) 2016 He Yang"
 		};
@@ -100,6 +174,7 @@
 	})();
 	// end UI String definitions
 	//--------------------------
+	//
 	var UIText
 	
 	//userDefinedDatabase
@@ -146,9 +221,7 @@
 		$('#userDefinedDatabase').html('<ol>'+html+'</ol>')
 	}
 	function textareaChangeFunction(){
-		userDefinedDatabase=JSON.parse($('#userDefinedDatabase').val())
-		console.log(userDefinedDatabase)
-		console.log(typeof userDefinedDatabase)
+		userDefinedDatabase=JSON.parse($('#userDefinedDatabase').val())		
 	}
 	
 	// end userDefinedDatabase
@@ -176,26 +249,41 @@
 				
 				//
 				for (var e in UIText.form.checkbox){
+				
+					if (e=="userDefined"){
+						$("#userDefinedDiv").before('<input type="Checkbox" name="databases" value="'+e+'">'+UIText.form.checkbox[e]+'</input>');
+					} else if (e=="userProvided"){
+						$("#userProvidedDiv").before('<br><input type="Checkbox" name="databases" value="'+e+'">'+UIText.form.checkbox[e]+'</input>');
+					} else {
+						$("#builtInDiv").append('<br><input type="Checkbox" name="databases" value="'+e+'">'+UIText.form.checkbox[e]+'</input>');
+					}
 					
-					$("#builtInDiv").append('<br><input type="Checkbox" name="databases" value="'+e+'">'+UIText.form.checkbox[e]+'</input>');
 					
 					
 				}
 				
-				//
+				//UserDefined checkbox checked
 				$("input[value='userDefined']").change(function(){
-					console.log('in')
-					console.log($(this))
+					
+					
 					if ($(this).is(':checked')) {
-					console.log('true')
+					
 						$("#userDefinedDiv").show()
 					} else {
-					console.log('false')
+					
 						$("#userDefinedDiv").hide()
 					}
 				})
-				
-				
+				//UserProvided checkbox checked
+				$("input[value='userProvided']").change(function(){
+					if($(this).is(':checked')) {
+						$('#userProvidedDiv').show()
+					} else {
+						$('#userProvidedDiv').hide()
+					}
+					
+				})
+				//userDefined select disable enable
 				$('select').change(function() {
 				  var $options = $(this).children()
 				  if ($options.filter('.no-match').is(':selected')) {
@@ -228,16 +316,40 @@
 		var goFunction=function(){
 			$("#goButton").attr("disabled",true)
 			$("#goButton").text(UIText.form.processing)
+			$("#error").text("")
 			var checkedDbs=[]
 			var searchResults=[]
 			var searchResults2=[]
 			var dbs=[]
 			var objs2=[]
-			console.log(218)
+			
 			$("[name='databases']").each(function(){
 				if($(this).is(':checked')){
+					//handle userDefined
 					if ($(this).val()=='userDefined'){
 						var db=userDefinedDatabase	
+					
+					//handle userprovided
+					} else if($(this).val()=='userProvided'){
+						
+						try{
+							if($("#userProvidedTextarea").val().length>0){
+								var userProvided= JSON.parse($("#userProvidedTextarea").val())
+							}
+							else {
+								$.notify( UIText.form.nothingProvided,  { position: 'left middle', className: 'success'});
+								throw ('nothing provided')//////////////////////////////
+							}
+							
+						}
+						catch (err){	
+							throw ('Invalid user provided database')	/////////////////////////////////////////////////////////
+						}
+						var dbValidate = jsen(dbSchema);						
+						if (dbValidate(userProvided)==false){ throw (JSON.stringify(dbValidate.errors)) }
+						var db=userProvided.userProvided
+					
+					
 					} else {
 						var db=databases[$(this).val()]	
 					}
@@ -247,9 +359,12 @@
 					
 				}
 			})
+			//remove duplicate entries
 			dbs=$.unique(dbs)
 			
-			console.log(234)
+			//----------------------------------------
+			//Word Run
+			//
 			Word.run(function(ctx){
 				var range=ctx.document.body
 				console.log(237)
