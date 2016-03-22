@@ -19,6 +19,7 @@ Want to know more about WTSolutions? Visit http://blog.wtsolutions.cn (mosts pos
 * 2016-3-4  | version 1.1.2.0 | add new entries to water and units databases
 * 2016-3-14 | version 1.1.3.0 | add new entries to existing databases 
 * 2016-3-20 | version 1.2.0.0 | add new function user provided database
+* 2016-3-22 | version 1.3.0.0 | add user defined database export function
 
 ##Author
 he.yang @ wtsolutions.cn 
