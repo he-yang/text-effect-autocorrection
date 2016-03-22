@@ -9,19 +9,24 @@
 (function () {
     "use strict"; 
 	//----------------------------
-	//define my own error alert
+	//define my own error alert system
 	onerror=handleErr
 	var txt=""	 
 	function handleErr(msg,url,l)
 	{
-		
+		//write error
 		txt+=" Error: " + msg 
 		txt+=" URL: " + url 
 		txt+=" Line: " + l +'<br>'
 		$('#error').html(txt)
+		//resume go button
 		$("#goButton").text(UIText.form.goButton);
 		$("#goButton").attr("disabled",false)
+		// alert error
 		$.notify( "Error",  { position: 'left middle'});
+		//scroll to error
+		var scroll_offset = $("#error").offset();		
+		$("body,html").animate({scrollTop:scroll_offset.top },0);		
 		return false
 	}
 	//
@@ -37,7 +42,7 @@
 		r = null;  
 		return context == null || context == "" || context == "undefined" ? "" : context;  
 	}
-	//
+	//----------------------------
 	// get _host_Info
 	//
 	var host_info=GetQueryString('_host_Info').split('|')
@@ -212,6 +217,20 @@
 		userDefinedDatabase.pop()
 		displayArray()
 	}
+	
+	function exportEntriesFunction(){
+		var userDefinedDatabaseJSON={}
+		
+		userDefinedDatabaseJSON["userDefined"]=userDefinedDatabase
+		$("#exportEntriesDiv").text(JSON.stringify(userDefinedDatabaseJSON))
+		
+		var scroll_offset = $("#exportEntriesDiv").offset();		
+		$("body,html").animate({scrollTop:scroll_offset.top },0);
+	}
+	
+	function cancelExportEntriesFunction(){
+		$("#exportEntriesDiv").text("")
+	}
 
 	function displayArray(){
 		var html=''
@@ -246,6 +265,8 @@
 				$("#footer").prepend(UIText.footer);
 				$('#addEntryButton').click(addEntryFunction)
 				$('#deleteLastEntryButton').click(deleteLastEntryFunction)
+				$('#exportEntriesButton').click(exportEntriesFunction)
+				$('#cancelExportEntriesButton').click(cancelExportEntriesFunction)
 				
 				//
 				for (var e in UIText.form.checkbox){
@@ -367,7 +388,7 @@
 			//
 			Word.run(function(ctx){
 				var range=ctx.document.body
-				console.log(237)
+				
 				
 					
 					
@@ -378,9 +399,9 @@
 						ctx.load(searchResults[i],'text,font')
 						
 					}
-					console.log(248)
+					
 					return ctx.sync().then(function(){
-					console.log(250)
+					
 						for (var i=0; i<dbs.length; i++){
 							for (var j=0;j<searchResults[i].items.length;j++){
 								if (!dbs[i]["s2"]){
