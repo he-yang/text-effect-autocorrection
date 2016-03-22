@@ -1,6 +1,7 @@
-/*
+ /*
  * text-effect-autocorrection
- * https://help.wtsolutions.cn
+ * Help https://help.wtsolutions.cn
+ * Souce code https://github.com/he-yang/text-effect-autocorrection
  *
  * Copyright (c) 2016 He Yang <he.yang @ wtsolutions.cn>
  * Licensed under the MIT license
