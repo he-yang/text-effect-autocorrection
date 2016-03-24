@@ -37,3 +37,15 @@ Want to know more about WTSolutions? Visit http://blog.wtsolutions.cn (mosts pos
 * 2016-3-20 | version 1.2.0.0 | add new function user provided database
 * 2016-3-22 | version 1.3.0.0 | add user defined database export function
 * 2016-3-24 | version 1.3.1.0 | add new entries to Chemical and units database
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?00195c4e233349e692de38c1a46162e4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
