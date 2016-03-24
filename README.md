@@ -11,6 +11,7 @@ Users can create their own databases easily.
 ## Requirements
 
 Microsoft Word 2016 or newer
+
 Word for Mac? Not yet tested.
 
 ## Documentation
