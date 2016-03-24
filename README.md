@@ -22,7 +22,7 @@ Please visit https://help.wtsolutions.cn for documentation.
 Any kind of contributions are welcomed.
 
 ## Author
-he.yang @ wtsolutions.cn 
+he.yang @wtsolutions.cn 
 
 ## WTSolutions
 Want to know more about WTSolutions? Visit http://blog.wtsolutions.cn (mosts posts written in simplified Chinese)
@@ -35,4 +35,4 @@ Want to know more about WTSolutions? Visit http://blog.wtsolutions.cn (mosts pos
 * 2016-3-14 | version 1.1.3.0 | add new entries to existing databases 
 * 2016-3-20 | version 1.2.0.0 | add new function user provided database
 * 2016-3-22 | version 1.3.0.0 | add user defined database export function
-* 2016-3-24 | version 1.3.1.0 | add new entries to Chemical database
+* 2016-3-24 | version 1.3.1.0 | add new entries to Chemical and units database
