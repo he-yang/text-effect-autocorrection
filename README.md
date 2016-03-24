@@ -1,16 +1,31 @@
 # text-effect-autocorrection 文字效果自动纠正
 
-A Microsoft Word Text Effects AutoCorrection Add-In
+A Microsoft Word Text Effects AutoCorrection Add-In avaliable on Microsoft Office Store.
 
 ## Description
 
-text-effect-autocorrection can finds and corrects lower case / upper case , subscript / superscript typos using built-in databases.
+Text-effect-autocorrection can finds and corrects lower case / upper case , subscript / superscript typos using built-in databases.
 
 Users can create their own databases easily.
 
-## Instructions
+## Requirements
 
-Please visit https://help.wtsolutions.cn for more information.
+Microsoft Word 2016 or newer
+Word for Mac? Not yet tested.
+
+## Documentation
+
+Please visit https://help.wtsolutions.cn for documentation.
+
+## Contributors
+
+Any kind of contributions are welcomed.
+
+## Author
+he.yang @ wtsolutions.cn 
+
+## WTSolutions
+Want to know more about WTSolutions? Visit http://blog.wtsolutions.cn (mosts posts written in simplified Chinese)
 
 ##ChangeLog
 * 2016-2-11 | version 0.1.0 | create database for water ans wastewater engineering field, create code and index page.
@@ -20,9 +35,4 @@ Please visit https://help.wtsolutions.cn for more information.
 * 2016-3-14 | version 1.1.3.0 | add new entries to existing databases 
 * 2016-3-20 | version 1.2.0.0 | add new function user provided database
 * 2016-3-22 | version 1.3.0.0 | add user defined database export function
-
-##Author
-he.yang @ wtsolutions.cn 
-
-##WTSolutions
-Want to know more about WTSolutions? Visit http://blog.wtsolutions.cn (mosts posts written in simplified Chinese)
+* 2016-3-24 | version 1.3.1.0 | add new entries to Chemical database
