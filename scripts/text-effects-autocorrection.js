@@ -1,6 +1,6 @@
  /*
  * text-effect-autocorrection
- * Help https://help.wtsolutions.cn
+ * docs https://docs.wtsolutions.cn
  * Souce code https://github.com/he-yang/text-effect-autocorrection
  *
  * Copyright (c) 2016 He Yang <he.yang @ wtsolutions.cn>
@@ -110,7 +110,7 @@
 		UIStrings.EN =
 		{        
 			"header": "Text Effects Autocorrection",
-			"whyUse": "Text effects autocorrection can correct sub/super scripts, upper/lower case typos using built-in/user-defined databases. Corrected typos will be highlighted in pink. Visit https://help.wtsolutions.cn for more.",
+			"whyUse": "Text effects autocorrection can correct sub/super scripts, upper/lower case typos using built-in/user-defined databases. Corrected typos will be highlighted in pink. Visit https://docs.wtsolutions.cn for more.",
 			"instructions":"You can also define/provide your own database. More help can be found ",			
 			"notSupported":"Word 2013 or Word Online NOT supported.This add-in requires Word 2016 or greater.",
 			"form":{
@@ -124,7 +124,7 @@
 					"userProvided":"User Provided"
 				},
 				"goButton": "GO",
-				"notValid":" s1,s1Opt,to are mandatory fields \n Help can be found at https://help.wtsolutions.cn",
+				"notValid":" s1,s1Opt,to are mandatory fields \n Help can be found at https://docs.wtsolutions.cn",
 				"entryAdded":"One entry added",
 				"processing":"Processing",
 				"processed":"Process Completed",
@@ -136,7 +136,7 @@
 		UIStrings.CN =
 		{        
 			"header": "文字效果自动纠正",
-			"whyUse": "根据现有数据库自动修正文本中字母大小写、上下标等文字效果错误，修正的部分将以粉红色突出显示。更多帮助请查看https://help.wtsolutions.cn",
+			"whyUse": "根据现有数据库自动修正文本中字母大小写、上下标等文字效果错误，修正的部分将以粉红色突出显示。更多帮助请查看https://docs.wtsolutions.cn",
 			"instructions":"你可以自定义/提供数据库，如需帮助，可查看",
 			"notSupported":"本插件不支持Word2013和Word Online，只支持Word2016或更高级版本",
 			"form":{
@@ -150,7 +150,7 @@
 					"userProvided":"用户提供"
 				},
 				"goButton": "开始",
-				"notValid":"s1,s1Opt,to为必填项 \n 更多帮助请查看 https://help.wtsolutions.cn",
+				"notValid":"s1,s1Opt,to为必填项 \n 更多帮助请查看 https://docs.wtsolutions.cn",
 				"processing":"正在处理",
 				"processed":"完成",
 				"invalidJSON":"用户提供数据库无效",
