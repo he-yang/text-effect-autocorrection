@@ -1,6 +1,6 @@
  /*
  * text-effect-autocorrection
- * Help https://help.wtsolutions.cn
+ * docs https://docs.wtsolutions.cn
  * Souce code https://github.com/he-yang/text-effect-autocorrection
  *
  * Copyright (c) 2016 He Yang <he.yang @ wtsolutions.cn>
@@ -12,6 +12,8 @@ var databases={
 		standard:[
 			{ s1: "[0-9][xX][0-9]",s1Opt:{ matchWildCards: true }, s2:"[xX]",s2Opt:{ matchWildCards: true },to: "×"},
 			{ s1: "Microsoft excel", s1Opt:{}, to: "Microsoft Excel"},			
+			{ s1: "Error! Reference source not found.", s1Opt:{}, to: "Error!!! Reference source not found."},			
+			{ s1: "错误!未找到引用源。", s1Opt:{}, to: "错误!!!未找到引用源。"},			
 			{ s1: "[lL][*xX][bB]", s1Opt:{ matchWildCards: true }, s2: "[*xX]" , s2Opt:{ matchWildCards: true }, to: "×"},
 			{ s1: "[bB][*xX][hH]", s1Opt:{ matchWildCards: true }, s2: "[*xX]" , s2Opt:{ matchWildCards: true }, to: "×"},
 		],
@@ -91,6 +93,7 @@ var databases={
             { s1: "CODCr",s1Opt:{}, s2: "cod",s2Opt:{}, to: "COD"},
             { s1: "ntu",s1Opt:{}, to: "NTU"},			            
             { s1: "BOD5",s1Opt:{}, s2: "5",s2Opt:{}, to: "subscript"},
+            { s1: "A2O",s1Opt:{}, s2: "2",s2Opt:{}, to: "superscript"},
 			{ s1: "L/m2[`.]s", s1Opt:{ matchWildCards: true }, s2: "2" , s2Opt:{}, to: "superscript"},
 			{ s1: "L/m2[`.]s", s1Opt:{ matchWildCards: true }, s2: "[`.]" , s2Opt:{ matchWildCards: true }, to: "·"},
         ]
