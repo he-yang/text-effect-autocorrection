@@ -15,7 +15,7 @@
 	function handleErr(msg,url,l)
 	{
 		//prepare error
-		txt=" Error: " + msg +'\n'
+		txt=msg +'\n'
 		//txt+=" URL: " + url +'\n'
 		//txt+=" Line: " + l +'<br>'
 		$('#error').html(txt)
@@ -23,7 +23,7 @@
 		$("#goButton").text('Go');
 		$("#goButton").attr("disabled",false)
 		// alert error
-		$.notify( txt,  { position: 'left middle'});
+		//$.notify( txt,  { position: 'left middle'});
 		//scroll to error
 		var scroll_offset = $("#error").offset();		
 		$("body,html").animate({scrollTop:scroll_offset.top },0);		
@@ -109,6 +109,7 @@
 					//return ctx.sync().then(function(){
 						
 						console.log(asyncResult.value)
+						if (asyncResult.value.length<2){throw new Error('You must select at least two rows as the first row will be considered as header.')}
 						user.values=asyncResult.value
 						user.json.output=user.conversion[user.options.type](user.values,user.options)
 						$('#json-renderer').jsonViewer(user.json.output);
