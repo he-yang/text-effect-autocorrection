@@ -1,0 +1,71 @@
+﻿<!--
+ /*
+ * Excel-to-JSON
+ * Docs https://docs.wtsolutions.cn
+ * Souce code https://github.com/he-yang/excel-to-json
+ *
+ * Copyright (c) 2016 He Yang <he.yang @ wtsolutions.cn>
+ * Licensed under the MIT license
+ */
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+	<script src="https://appsforoffice.microsoft.com/lib/1/hosted/Office.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.0/notify.min.js" type="text/javascript"></script>
+	<script src="scripts/shape-json.min.js" type="text/javascript"></script>
+	<script src="scripts/jquery.json-viewer.js" type="text/javascript"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+	<link href="stylesheets/excel-to-json.css" rel="stylesheet">
+</head>
+
+
+<body style="height:100%">
+
+<div id="container" class="alert alert-info" role="alert" style="margin:0px;padding:0px;height:100%;position:absolute;">
+	<div class="alert alert-info" role="alert" style="margin:0px"><h2 id="header">Excel to JSON</h2></div>
+	<div class="alert alert-info" role="alert" style="margin:0px" >
+		<small>
+			<p><em>Convert Excel to JSON. </em></p>
+			<p><a href="https://docs.wtsolutions.cn">Examples and Documentations.</a></p>
+			<p>Make sure you have at least two rows in the active sheet as the first row will be considered as header.</p>
+		</small>
+	
+	</div>	
+	<div class="alert alert-info" role="alert" id="content" style="margin:0px" >
+		<form onSubmit="return false;">
+			<fieldset>
+				<span>Please select type of conversion</span>
+				<div id="formContent">					
+					<input type="radio" name="conversiontype" value="row" checked>Row</input><br>
+					<input type="radio" name="conversiontype" value="nested">Nested</input><br>
+					<textarea id="scheme" style="width:100%" placeholder="Type in or paste nested json schema here. Read documentation for more information."></textarea><br>					
+				</div>
+			</fieldset>
+			<button id="goButton" class="btn btn-primary" style="width:100%">Go</button>
+		</form>
+		<pre id="json-renderer" style="display:none"></pre>
+	</div>
+	<div class="alert alert-danger" role="alert" id="error" style="margin:0px"></div>
+	<div class="container"><p id="footer" class="text-center small">Copyrights 2016 | He.Yang@WTSolutions.cn | v 1.0.0.0 </p></div>
+</div>
+<script src="scripts/excel-to-json.js" type="text/javascript"></script>
+<!--baidu tongji-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?00195c4e233349e692de38c1a46162e4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!--baidu tongji-->
+</body>
+</html>
+
