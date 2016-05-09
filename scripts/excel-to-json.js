@@ -120,7 +120,9 @@
 					//})
 				}
 					
-			}).catch(function (error) {
+			})
+			/*
+			.catch(function (error) {
 				  console.log('Error: ' + JSON.stringify(error));
 				  $("#error").append('Error: ' + JSON.stringify(error))
 				  if (error instanceof OfficeExtension.Error) {
@@ -128,6 +130,7 @@
 					  $("#error").append('Debug info: ' + JSON.stringify(error.debugInfo))
 				  }
 			  });
+			  */
 		}//end gofunction
 		//---------------------------
 		
