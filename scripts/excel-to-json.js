@@ -40,18 +40,18 @@
 		$(document).ready(function () {
 		
 
-			if(Office.context.requirements.isSetSupported('ExcelApi',1.2)){
+			//if(Office.context.requirements.isSetSupported('ExcelApi',1.2)){
 				
 
 				console.log('in office')			
 				$("#goButton").click(goFunction);
 						
-			}
-			else{
+			//}
+			//else{
 				
 				
-				$('#error').append('<span class="glyphicon glyphicon-alert"></span>'+ 'This version of Excel is not supported. Please try Excel 2016 or Excel Online.');
-			}
+			//	$('#error').append('<span class="glyphicon glyphicon-alert"></span>'+ 'This version of Excel is not supported. Please try Excel 2016 or Excel Online.');
+			//}
             
             
         });
@@ -95,15 +95,21 @@
 			user.json.content=[]
 			console.log('ready to run excel')
 			//run excel  
-			Excel.run(function(ctx){
-				var sheet= ctx.workbook.worksheets.getActiveWorksheet();
-				var rangeUR=sheet.getUsedRange();
-				rangeUR.load('values')
-				return ctx.sync()
-					.then(function(){
+			//Excel.run(function(ctx){
+			//	var sheet= ctx.workbook.worksheets.getActiveWorksheet();
+			//	var rangeUR=sheet.getUsedRange();
+			
+			// Use Office for selected data collection instead of Excel.run
+			Office.context.document.getSelectedDataAsync(Office.CoercionType.Matrix, function (asyncResult) {
+				if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+					throw new Error('Reading selected data failed. Error: ' + asyncResult.error.message);
+				}
+				else {
+					//rangeUR.load('values')
+					//return ctx.sync().then(function(){
 						
-						console.log(rangeUR.values)
-						user.values=rangeUR.values
+						console.log(asyncResult.value)
+						user.values=asyncResult.value
 						user.json.output=user.conversion[user.options.type](user.values,user.options)
 						$('#json-renderer').jsonViewer(user.json.output);
 						$('#json-renderer').show()
@@ -111,7 +117,8 @@
 						$("#goButton").text('Go');
 						$("#goButton").attr("disabled",false)
 						
-					})
+					//})
+				}
 					
 			}).catch(function (error) {
 				  console.log('Error: ' + JSON.stringify(error));
