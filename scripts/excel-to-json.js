@@ -18,15 +18,16 @@
 		txt=msg +'\n'
 		//txt+=" URL: " + url +'\n'
 		//txt+=" Line: " + l +'<br>'
-		$('#error').html(txt)
+		//$('#error').html(txt)
 		//resume go button
 		$("#goButton").text('Go');
 		$("#goButton").attr("disabled",false)
-		// alert error
-		//$.notify( txt,  { position: 'left middle'});
+		
 		//scroll to error
-		var scroll_offset = $("#error").offset();		
-		$("body,html").animate({scrollTop:scroll_offset.top },0);		
+		//var scroll_offset = $("#error").offset();		
+		//$("body,html").animate({scrollTop:scroll_offset.top },0);	
+		// sweetalert error
+		sweetAlert("Oops...", txt, "error");		
 		return false
 	}
 	//
@@ -45,6 +46,36 @@
 
 				console.log('in office')			
 				$("#goButton").click(goFunction);
+				
+				
+				var clipboard = new Clipboard('#jsonOutputBtn', {
+					text: function(trigger) {
+						return JSON.stringify(user.json.output);
+					}
+				});
+
+				clipboard.on('success', function(e) {
+					console.info('Action:', e.action);
+					console.info('Text:', e.text);
+					console.info('Trigger:', e.trigger);
+					
+					swal({
+						 title: "Copied", 
+						 timer: 2000,
+						 type: "success",
+					})
+
+					e.clearSelection();
+				});
+
+				clipboard.on('error', function(e) {
+					console.error('Action:', e.action);
+					console.error('Trigger:', e.trigger);
+					throw error('Error when copying JSON to clipboard')
+				});
+				
+
+				
 						
 			//}
 			//else{
@@ -70,7 +101,7 @@
 			$("#goButton").attr("disabled",true)
 			$("#goButton").text('Processing')
 			$("#error").text("")	
-			$('#json-renderer').hide()
+			$('#jsonOutputDiv').hide()
 			
 			//fill user object
 				//conversion options
@@ -113,7 +144,9 @@
 						user.values=asyncResult.value
 						user.json.output=user.conversion[user.options.type](user.values,user.options)
 						$('#json-renderer').jsonViewer(user.json.output);
-						$('#json-renderer').show()
+						
+						$('#jsonOutputDiv').show()
+						
 						//resume go button
 						$("#goButton").text('Go');
 						$("#goButton").attr("disabled",false)
