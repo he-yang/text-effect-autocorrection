@@ -30,9 +30,25 @@
 		sweetAlert("Oops...", txt, "error");		
 		return false
 	}
-	//
-	
-	
+	//--------------------------------
+	// concat json
+	var concat = function(a,b){
+		console.log(typeof a)
+		console.log(typeof b)
+		if($.isArray(a) && $.isArray(b)){
+			return $.merge(a,b)
+		} else if($.isPlainObject(a) && $.isPlainObject(b)) {
+			return $.extend(a,b);
+		} else {
+			throw Error('Row JSON can only concat with Row JSON, Nested JSON can only concat with Nested JSON')
+		}
+		
+	};
+	//------------------------------
+	//cl
+	var cl=function(a){
+		$('#error').append(a+'<br>')
+	}
 	//-----------------------------------------------
 	//start office
     Office.initialize = function (reason)
@@ -105,7 +121,8 @@
 			
 			//fill user object
 				//conversion options
-			
+			user.options.concat= $("#concat").is(":checked")?true:false;
+			console.log(user.options.concat)
 			user.options.type=$('input[name="conversiontype"]:checked').val()
 			if (user.options.type=='nested'){
 				if($('#scheme').val().length>0){
@@ -121,9 +138,10 @@
 				}
 			}
 			
-				//prep for json
-			user.json={}
-			user.json.content=[]
+				//prep for json			
+			user.json=user.json || {};
+			user.json.existing= user.options.concat?user.json.output:{};
+			user.json.content = []
 			console.log('ready to run excel')
 			//run excel  
 			//Excel.run(function(ctx){
@@ -143,8 +161,8 @@
 						if (asyncResult.value.length<2){throw new Error('You must select at least two rows as the first row will be considered as header.')}
 						user.values=asyncResult.value
 						user.json.output=user.conversion[user.options.type](user.values,user.options)
+						user.options.concat && (user.json.output = concat(user.json.existing,user.json.output))
 						$('#json-renderer').jsonViewer(user.json.output);
-						
 						$('#jsonOutputDiv').show()
 						
 						//resume go button
