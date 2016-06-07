@@ -35,7 +35,7 @@
 	<div class="alert alert-info" role="alert" style="margin:0px" >
 		<small>
 			<p><em>Convert Excel to JSON. </em></p>
-			<p><a href="https://excel-to-json.wtsolutions.cn"><u>Examples and Documentations</u>.</a></p>
+			<p><a href="https://excel-to-json.wtsolutions.cn" target="_blank"><u>Examples and Documentations</u>.</a></p>
 			<p>Make sure you SELECT at least TWO rows in the active sheet as the first row will be considered as header.</p>
 		</small>
 	
@@ -54,10 +54,11 @@
 			<button id="goButton" class="btn btn-primary" style="width:100%">Go</button>
 		</form>
 		<div style="display:none" id="jsonOutputDiv">
-			
-			<a id="jsonOutputBtn" class="btn" style="width:100%">
-				Copy to clipboard
-			</a>		
+			<div style="display:none" id="jsonOutputBtnDiv">
+				<a id="jsonOutputBtn" class="btn" style="width:100%">
+					Copy to Clipboard
+				</a>
+			</div>		
 			<pre id="json-renderer" style="width:100%">			
 			</pre>
 		</div>

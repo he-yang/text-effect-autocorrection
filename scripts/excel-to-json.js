@@ -27,7 +27,14 @@
 		//var scroll_offset = $("#error").offset();		
 		//$("body,html").animate({scrollTop:scroll_offset.top },0);	
 		// sweetalert error
-		sweetAlert("Oops...", txt, "error");		
+		sweetAlert("Oops...", txt, "error");
+		/*
+		if(window.location.host=="tools.wtsolutions.cn" || window.location.hostname=="127.0.0.1"){
+			sweetAlert("Oops...", txt, "error");
+		} else {
+			cl(txt)
+		}*/
+				
 		return false
 	}
 	//--------------------------------
@@ -60,35 +67,45 @@
 			//if(Office.context.requirements.isSetSupported('ExcelApi',1.2)){
 				
 
-				console.log('in office')			
+				console.log('in office')
+				//cl(window.location.host)			
 				$("#goButton").click(goFunction);
 				
 				
-				var clipboard = new Clipboard('#jsonOutputBtn', {
-					text: function(trigger) {
-						return JSON.stringify(user.json.output);
-					}
-				});
+				
+				
+				if(! /iPhone|iPad|Mac/i.test(navigator.userAgent)){ //clipboardjs does not support safari && (window.location.host=="tools.wtsolutions.cn" || window.location.hostname=="127.0.0.1")
+					$('#jsonOutputBtnDiv').show()
+					var clipboard = new Clipboard('#jsonOutputBtn', {
+						text: function(trigger) {
+							return JSON.stringify(user.json.output);
+						}
+					});
 
-				clipboard.on('success', function(e) {
-					console.info('Action:', e.action);
-					console.info('Text:', e.text);
-					console.info('Trigger:', e.trigger);
-					
-					swal({
-						 title: "Copied", 
-						 timer: 2000,
-						 type: "success",
-					})
+					clipboard.on('success', function(e) {
+						console.info('Action:', e.action);
+						console.info('Text:', e.text);
+						console.info('Trigger:', e.trigger);
+						
+						swal({
+							title: "Copied", 
+							timer: 2000,
+							type: "success",
+						})
 
-					e.clearSelection();
-				});
+						e.clearSelection();
+					});
 
-				clipboard.on('error', function(e) {
-					console.error('Action:', e.action);
-					console.error('Trigger:', e.trigger);
-					throw error('Error when copying JSON to clipboard')
-				});
+					clipboard.on('error', function(e) {
+						console.error('Action:', e.action);
+						console.error('Trigger:', e.trigger);
+						throw error('Error when copying JSON to clipboard')
+					});
+				}
+
+
+				
+				
 				
 
 				
@@ -112,6 +129,7 @@
 	   user.options={} 
 	 // go function  
 		var goFunction=function(){
+			
 			console.log('in gofunction')
 			//prep for start
 			$("#goButton").attr("disabled",true)
