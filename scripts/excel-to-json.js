@@ -227,7 +227,12 @@
 			for (var i=1;i<values.length;i++){
 				user.json.content[i-1]={}
 				for (var j=0;j<values[i].length;j++){
-					user.json.content[i-1][user.json.header[j]]=values[i][j]
+					if (typeof values[i][j] =='string'){
+						user.json.content[i-1][user.json.header[j]]=values[i][j].replace('\n','<br>')
+					} else {
+						user.json.content[i-1][user.json.header[j]]=values[i][j]
+					}
+					
 				}
 			}
 			return user.json.content		
