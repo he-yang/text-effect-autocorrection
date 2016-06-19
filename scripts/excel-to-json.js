@@ -228,7 +228,7 @@
 				user.json.content[i-1]={}
 				for (var j=0;j<values[i].length;j++){
 					if (typeof values[i][j] =='string'){
-						user.json.content[i-1][user.json.header[j]]=values[i][j].replace('\n','<br>')
+						user.json.content[i-1][user.json.header[j]]=values[i][j].replace(/\n/g,'<br>')
 					} else {
 						user.json.content[i-1][user.json.header[j]]=values[i][j]
 					}
