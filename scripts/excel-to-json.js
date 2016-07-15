@@ -69,9 +69,14 @@
 
 				console.log('in office')
 				//cl(window.location.host)			
-				$("#goButton").click(goFunction);
-				
-				
+				$("#goButton").click(goFunction);				
+				// load schema automaticlly
+				if(FileReader){
+					$("body").on("change","#fileToLoad",importSchemaFunction)
+				} else {
+					$("#fileToLoad").remove()
+				}
+							
 				
 				
 				if(! /iPhone|iPad|Mac/i.test(navigator.userAgent)){ //clipboardjs does not support safari && (window.location.host=="tools.wtsolutions.cn" || window.location.hostname=="127.0.0.1")
@@ -102,6 +107,15 @@
 						throw error('Error when copying JSON to clipboard')
 					});
 				}
+				//filesaver.js 
+				try {
+					var isFileSaverSupported = !!new Blob;
+					$('#jsonSaveasBtn').click(function(){
+						saveTextAs(JSON.stringify(user.json.output), "export.json");
+					})
+				} catch (e) {
+					$('#jsonSaveasBtn').remove()
+				}
 
 
 				
@@ -123,6 +137,29 @@
 	};  //end office 
 	//-----------------------------
 	
+	//importSchema
+	var importSchemaFunction=function(){
+		var fileToLoad = document.getElementById("fileToLoad").files[0]; 
+		var fileReader = new FileReader();
+		fileReader.onload = function(fileLoadedEvent) 
+		{
+			var textFromFileLoaded = fileLoadedEvent.target.result;
+			document.getElementById("scheme").value = textFromFileLoaded;
+		};
+		fileReader.readAsText(fileToLoad, "UTF-8");
+		fileReader.onloadend=function(){
+			swal('Schema Loaded')
+		}
+		fileReader.onerror=function(){
+			throw Error('Loading schema error')
+		}
+		
+	}
+
+
+
+
+
 	//core code
        var user={}
 	   user.conversion={}

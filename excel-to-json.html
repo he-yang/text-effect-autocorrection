@@ -24,13 +24,15 @@
 	<script src="scripts/jquery.json-viewer.js" type="text/javascript"></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css" rel="stylesheet">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+	<script type="text/javascript" src="scripts/Blob.js"></script>
+	<script type="text/javascript" src="scripts/FileSaver.js"></script>
 	<link href="stylesheets/excel-to-json.css" rel="stylesheet">
 </head>
 
 
 <body style="height:100%">
 
-<div id="container" class="alert alert-info" role="alert" style="margin:0px;padding:0px;height:100%;position:absolute;">
+<div id="container" class="alert alert-info" role="alert" style="margin:0px;padding:0px;height:100%;position:absolute;max-width:400px">
 	<div class="alert alert-info" role="alert" style="margin:0px"><h2 id="header">Excel to JSON</h2></div>
 	<div class="alert alert-info" role="alert" style="margin:0px" >
 		<small>
@@ -46,8 +48,10 @@
 				<span>Please select type of conversion</span>
 				<div id="formContent">					
 					<input type="radio" name="conversiontype" value="row" checked>Row</input><br>
-					<input type="radio" name="conversiontype" value="nested">Nested</input><br>
-					<textarea id="scheme" style="width:100%" placeholder="Type in or paste nested json schema here. Read documentation for more information."></textarea><br>					
+					<input type="radio" name="conversiontype" value="nested">Nested</input><br>					
+					
+					<input type="file" id="fileToLoad" style='width:100%'/>
+					<textarea id="scheme" style="width:100%" placeholder="Type in , paste or import nested json schema here. Read documentation for more information."></textarea><br>					
 				</div>
 				<input type="checkbox" name="concat" id="concat">Concat coming JSON with existing JSON
 			</fieldset>
@@ -55,12 +59,15 @@
 		</form>
 		<div style="display:none" id="jsonOutputDiv">
 			<div style="display:none" id="jsonOutputBtnDiv">
-				<a id="jsonOutputBtn" class="btn" style="width:100%">
+				<button id="jsonOutputBtn" class="btn btn-success btn-sm" style="width:48%">
 					Copy to Clipboard
-				</a>
-			</div>		
-			<pre id="json-renderer" style="width:100%">			
-			</pre>
+				</button>
+				<button id='jsonSaveasBtn' class='btn btn-success btn-sm' style="width:48%">
+					Save As
+				</button>
+			</div>	
+			<div style='width:100%;overflow:scroll'><pre id="json-renderer" style="width:100%" ></pre></div>
+			
 		</div>
 	</div>
 	<div class="alert alert-danger" role="alert" id="error" style="margin:0px"></div>
