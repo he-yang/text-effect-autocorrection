@@ -116,6 +116,19 @@
 				} catch (e) {
 					$('#jsonSaveasBtn').remove()
 				}
+				// rate or donate
+				if(localStorage){
+					
+					if(localStorage.getItem('count')%10==5){
+						
+						swal({   title: "You like this add-in?",   text: "<a href='https://store.office.com/en-us/app.aspx?assetid=WA104380263' target='_blank'>Rate it</a> or <a href='https://excel-to-json.wtsolutions.cn/en/latest/donate/' target='_blank'>Donate</a>", html: true,  type: "warning",   showCancelButton: true, confirmButtonText: "I've Rated it!"});
+
+						localStorage.setItem('count',Number(localStorage.getItem('count'))+1)
+					} else {
+						var count=localStorage.getItem('count') || 0
+						localStorage.setItem('count',Number(count)+1)
+					}
+				}
 
 
 				
