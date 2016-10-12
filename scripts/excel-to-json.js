@@ -190,6 +190,7 @@
 			//fill user object
 				//conversion options
 			user.options.concat= $("#concat").is(":checked")?true:false;
+			user.options.ignore= $("#ignore").is(":checked")?true:false;
 			console.log(user.options.concat)
 			user.options.type=$('input[name="conversiontype"]:checked').val()
 			if (user.options.type=='nested'){
@@ -277,8 +278,11 @@
 			for (var i=1;i<values.length;i++){
 				user.json.content[i-1]={}
 				for (var j=0;j<values[i].length;j++){
+					
 					if (typeof values[i][j] =='string'){
-						user.json.content[i-1][user.json.header[j]]=values[i][j].replace(/\n/g,'<br>')
+						if(!user.options.ignore){
+							user.json.content[i-1][user.json.header[j]]=values[i][j].replace(/\n/g,'<br>')
+						}
 					} else {
 						user.json.content[i-1][user.json.header[j]]=values[i][j]
 					}
