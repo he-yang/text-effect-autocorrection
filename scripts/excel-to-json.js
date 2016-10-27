@@ -129,6 +129,11 @@
 						localStorage.setItem('count',Number(count)+1)
 					}
 				}
+				// add ad for zh-CN users
+				
+				if(/zh-CN/.test(window.location.search)){
+					$('#footer').before("<a href='http://s.click.taobao.com/mq9nBQx' target='_blank' rel='nofollow'><image  class='img-responsive center-block' src='https://t.wtsolutions.cn/images/alimama/small.png' alt='1111'/></a>")
+				}
 
 
 				
@@ -168,6 +173,8 @@
 		}
 		
 	}
+	
+
 
 
 
