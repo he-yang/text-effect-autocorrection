@@ -41,7 +41,7 @@ Want to know more about WTSolutions? Visit http://blog.wtsolutions.cn/aboutus
 * 2016-3-20 | version 1.2.0.0 | add new function user provided database
 * 2016-3-22 | version 1.3.0.0 | add user defined database export function
 * 2016-3-24 | version 1.3.1.0 | add new records to Chemical and units database
-
+* 2016-12-22 | version 1.4.0.0 | add environment and alkanes databases
 
 
 <script>
