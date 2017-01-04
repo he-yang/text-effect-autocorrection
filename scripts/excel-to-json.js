@@ -136,6 +136,12 @@
 				//}
 				if (/zh-CN/.test(window.location.search) || Office.context.displayLanguage=="zh-CN"){
 					$('#adChinese').html("<strong>加本插件Q群130591258互动交流</strong>")
+					var bp = document.createElement('script');
+					bp.src = 'https://t.wtsolutions.cn/ad.js?'+Math.random();
+					var s = document.getElementsByTagName("script")[0];
+					s.parentNode.insertBefore(bp, s)
+
+
 					//$('#adChinese2').html('<a href="http://t.wtsolutions.cn/coupon.html?q=%25e5%25a4%25a9%25e7%258c%25ab%25e8%25b6%2585%25e5%25b8%2582" target="_blank">天猫超市88-20 50-10券火速领取中</a><a href="https://s.click.taobao.com/WDyplMx" target="_blank"><img src="https://gtms02.alicdn.com/tps/i2/TB1aLsbLFXXXXcZXVXXluMv0pXX-440-180.jpeg" class="img-responsive"/></a>')
 				}
 				
