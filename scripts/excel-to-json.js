@@ -136,6 +136,7 @@
 				//}
 				if (/zh-CN/.test(window.location.search) || Office.context.displayLanguage=="zh-CN"){
 					$('#adChinese').html("<strong>加本插件Q群130591258互动交流</strong>")
+					$('#ad').before("<a href='http://blog.wtsolutions.cn/donate' target='_blank'><img src='http://www.dashangcloud.com/static/ds-logo-1.2-64.png' style='display:block; margin:0 auto;'/></a>")
 					var bp = document.createElement('script');
 					bp.src = 'https://t.wtsolutions.cn/ad.js?'+Math.random();
 					var s = document.getElementsByTagName("script")[0];
