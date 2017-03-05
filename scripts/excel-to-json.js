@@ -121,7 +121,7 @@
 					
 					if(localStorage.getItem('count')%10==5){
 						
-						swal({   title: "You like this add-in?",   text: "<a href='https://store.office.com/en-us/app.aspx?assetid=WA104380263' target='_blank'>Rate it</a> or <a href='https://excel-to-json.wtsolutions.cn/en/latest/donate/' target='_blank'>Donate</a>", html: true,  type: "warning",   showCancelButton: true, confirmButtonText: "I've Rated it!"});
+						swal({   title: "You like this add-in?",   text: "<a href='https://store.office.com/en-us/app.aspx?assetid=WA104380263' target='_blank'>Rate it</a> or Donate <a href='https://pledgie.com/campaigns/33488'><img alt='Click here to lend your support to: Excel-to-JSON and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/33488.png?skin_name=chrome' border='0' ></a>", html: true,  type: "warning",   showCancelButton: true, confirmButtonText: "I've Rated it!"});
 
 						localStorage.setItem('count',Number(localStorage.getItem('count'))+1)
 					} else {
